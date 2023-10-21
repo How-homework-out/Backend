@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="3.38.209.173" id="55333722-2129-49ba-9a2b-0e3ca42221af" keyPath="C:\Users\Administrator\OneDrive - 인하대학교\바탕 화면\aws key 보관\how.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
+      <sshConfig host="52.78.0.53" id="55333722-2129-49ba-9a2b-0e3ca42221af" keyPath="C:\Users\Administrator\OneDrive - 인하대학교\바탕 화면\aws key 보관\how.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>
