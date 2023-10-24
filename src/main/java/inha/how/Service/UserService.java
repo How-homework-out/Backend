@@ -39,7 +39,7 @@ public class UserService {
                 .claim("email", user.getPassword())
                 .signWith(key).compact();
 
-        return new LoginRes(jwts);
+        return new LoginRes(jwts, user.getUserId(), user.getNick(), user.getEmail());
     }
 
 
