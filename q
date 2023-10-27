@@ -1,0 +1,196 @@
+[33mcommit a3a931790b727483c7c3927f6b00c020e0cbc080[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Ryula <hobby519@naver.com>
+Date:   Thu Oct 26 11:36:11 2023 +0900
+
+    [chore] git cache 제거
+
+[33mcommit 8b458ed643ad88c62696dfc5354f5e9f7c156517[m
+Merge: ceb821e 397095b
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Thu Oct 26 11:16:52 2023 +0900
+
+    Merge pull request #8 from How-homework-out/master
+    
+    [chore] gitignore 수정
+
+[33mcommit 397095b88978de332b7a99b8e43a66cb170bb53b[m
+Author: Ryula <hobby519@naver.com>
+Date:   Thu Oct 26 11:12:11 2023 +0900
+
+    [chore] gitignore 수정
+
+[33mcommit ceb821ec903a682d874682ce29ac050c70dad0f2[m
+Merge: 90735d2 3ae7827
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Wed Oct 25 21:04:36 2023 +0900
+
+    Merge pull request #7 from How-homework-out/master
+    
+    [feat] routine api 추가(미)
+
+[33mcommit 3ae78273bac2cfbbd539b91209f147357b738b04[m
+Author: Ryula <hobby519@naver.com>
+Date:   Wed Oct 25 20:21:10 2023 +0900
+
+    [feat] routine api 추가(미)
+
+[33mcommit 90735d2fcff95f59fc06dd8bc36746fa21aab5c6[m
+Author: root <root@ip-10-0-1-188.ap-northeast-2.compute.internal>
+Date:   Tue Oct 24 13:22:57 2023 +0000
+
+    ec2 커밋
+
+[33mcommit eabc233eae4aa2837b44fff7c23dbf732a184bca[m
+Merge: 99daa0e b751c7d
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Tue Oct 24 22:13:35 2023 +0900
+
+    Merge pull request #6 from How-homework-out/master
+    
+    Master
+
+[33mcommit b751c7db8b1a9105544ffa1d59816cdc8e5d6252[m
+Author: Ryula <hobby519@naver.com>
+Date:   Tue Oct 24 21:58:16 2023 +0900
+
+    [fix] login Response 수정
+
+[33mcommit 18c333d53498c19719aff8c4b61de9bb86f6129e[m
+Author: Ryula <hobby519@naver.com>
+Date:   Mon Oct 23 20:38:39 2023 +0900
+
+    [fix] cors 수정
+
+[33mcommit 99daa0e810a078ba678c246116d006999eeae98f[m
+Merge: d0ecd09 a1465a8
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Mon Oct 23 16:30:14 2023 +0900
+
+    Merge pull request #5 from How-homework-out/master
+    
+    [feat] spring boot CORS 설정
+
+[33mcommit a1465a899adb59d5da8e3f25557423f8c89bf040[m
+Author: Ryula <hobby519@naver.com>
+Date:   Mon Oct 23 16:29:44 2023 +0900
+
+    [feat] spring boot CORS 설정
+
+[33mcommit d0ecd09b145d338d9b32ce0460c507a0722108c7[m
+Merge: 914bae1 bd516a6
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Sun Oct 22 22:51:41 2023 +0900
+
+    Merge pull request #4 from How-homework-out/master
+    
+    [feat] login api
+
+[33mcommit bd516a60e08ed16d48a59851d3d8e1f7eefc7fac[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sun Oct 22 22:50:38 2023 +0900
+
+    [feat] login api
+
+[33mcommit 914bae18dd68d1263bc2efee688a11cca6f60841[m
+Merge: 058ff0a 23dd41d
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Sat Oct 21 23:19:58 2023 +0900
+
+    Merge pull request #3 from How-homework-out/master
+    
+    [feat] swagger 꾸미기
+
+[33mcommit 23dd41dd0f9acf95bb749ff49113ca60ff16252d[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 21 23:19:18 2023 +0900
+
+    [feat] swagger 꾸미기
+
+[33mcommit 058ff0a38f7274a9928bf927008a1e5e2b3f8840[m
+Merge: 56eee71 7fe5c3e
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Sat Oct 21 21:12:43 2023 +0900
+
+    Merge pull request #2 from How-homework-out/master
+    
+    [chore] swagger 설정
+
+[33mcommit 7fe5c3ebd13e1662fea6e1a560f1d5f8f423504f[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 21 21:09:03 2023 +0900
+
+    [chore] swagger 설정
+
+[33mcommit 56eee716ad5cbf15ddc882f8add33e11824f6f26[m
+Merge: f258386 ff55af5
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Fri Oct 20 15:48:53 2023 +0900
+
+    Merge pull request #1 from How-homework-out/master
+    
+    ignore 변경
+
+[33mcommit ff55af5ad55c8e02be1b714500122dbfa0d7e423[m
+Author: Ryula <hobby519@naver.com>
+Date:   Fri Oct 20 15:48:24 2023 +0900
+
+    ignore 변경
+
+[33mcommit f2583869b9fa5d88688c77bbdf91cff4d5a289ff[m
+Merge: 5fccf55 b08ef9b
+Author: Ryula <hobby519@naver.com>
+Date:   Fri Oct 20 15:14:00 2023 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 5fccf5556cacd86c4c270a04587dab45e1d0fcbc[m
+Author: Ryula <hobby519@naver.com>
+Date:   Fri Oct 20 14:58:23 2023 +0900
+
+    [feat] 실시간 부분 테스트
+
+[33mcommit bf50122732eaed6680f4aceac18ea8f54f2e01f1[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 14 02:49:28 2023 +0900
+
+    aaa
+
+[33mcommit 193c96493c7f2b65c1a59f86a672f28ea743bd9e[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 14 02:45:46 2023 +0900
+
+    git ignore 수정
+
+[33mcommit b08ef9bb5a942d5f66aa9e593e34cb5f1b3bb629[m
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Sat Oct 14 02:42:07 2023 +0900
+
+    Create README.md
+
+[33mcommit 7e2038c42fc48921e548f31bf0cf2aaf8a0220a3[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 14 02:33:43 2023 +0900
+
+    Revert "Revert "init""
+    
+    This reverts commit 4a8e8f18a275e5deaf0f4ee20006d56c3b2734c5.
+
+[33mcommit 4a8e8f18a275e5deaf0f4ee20006d56c3b2734c5[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 14 02:31:06 2023 +0900
+
+    Revert "init"
+    
+    This reverts commit 68e1c6cdfebbc2dedb753c277fa9e7e3d03585cc.
+
+[33mcommit 68e1c6cdfebbc2dedb753c277fa9e7e3d03585cc[m
+Author: Ryula <hobby519@naver.com>
+Date:   Sat Oct 14 02:19:37 2023 +0900
+
+    init
+
+[33mcommit c0b419b684cc1a135547ecac2dc2eb14423357ed[m
+Author: ryulkim <58160874+ryulkim@users.noreply.github.com>
+Date:   Sat Oct 14 02:12:08 2023 +0900
+
+    Initial commit
