@@ -1,10 +1,10 @@
 package inha.how.Domain.dto.routine;
 
-import inha.how.Domain.entity.Action;
+import inha.how.Domain.entity.Excersise;
 
 public interface RoutineDetailMapping {
     Long getId();
-    Action getAction();
+    Excersise getEx();
     Long getType();
     Long getSet();
     Long getTime();

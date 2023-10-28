@@ -1,14 +1,12 @@
 package inha.how.Domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 
+@Table(name="Action")
 @Getter
 @Entity
-public class Action {
+public class Excersise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/ex-routine")
 @RestController
 public class RoutineController {
 
     private final RoutineService routineService;
 
-    @GetMapping("/ex-routine/all")
+    @GetMapping("/all")
     public BaseResponse<allRoutineRes> Routine(){
 
         //예외 처리 필요
@@ -26,7 +26,7 @@ public class RoutineController {
         return new BaseResponse<>(res);
     }
 
-    @GetMapping("/ex-routine")
+    @GetMapping("")
     public BaseResponse<RoutineDetailRes> RoutineDetails(@RequestParam Long id){
 
         //예외 처리 필요
