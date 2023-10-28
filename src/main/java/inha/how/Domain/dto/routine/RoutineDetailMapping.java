@@ -1,10 +1,11 @@
 package inha.how.Domain.dto.routine;
 
 import inha.how.Domain.entity.Excersise;
+import jakarta.persistence.Embedded;
 
 public interface RoutineDetailMapping {
     Long getId();
-    Excersise getEx();
+    String getExName();
     Long getType();
     Long getSet();
     Long getTime();

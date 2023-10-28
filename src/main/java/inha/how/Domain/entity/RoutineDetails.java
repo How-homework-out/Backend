@@ -21,4 +21,8 @@ public class RoutineDetails {
     private Long rest;
     private Long set;
     private Long order;
+
+    public Excersise getRoutineName(){
+        return getEx();
+    }
 }
