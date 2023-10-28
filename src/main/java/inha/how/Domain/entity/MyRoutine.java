@@ -3,6 +3,7 @@ package inha.how.Domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+@Table(name = "my_routine")
 @Getter
 @Entity
 public class MyRoutine {

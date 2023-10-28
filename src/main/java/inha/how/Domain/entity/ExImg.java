@@ -3,6 +3,7 @@ package inha.how.Domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+@Table(name = "action_img")
 @Getter
 @Entity
 public class ExImg {

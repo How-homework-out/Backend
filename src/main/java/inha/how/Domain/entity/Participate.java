@@ -16,6 +16,6 @@ public class Participate {
     @Id
     @ManyToOne
     @JoinColumn(name = "participate_id", referencedColumnName = "id")
-    private Participate participate;
+    private User participate;
     private Access access;
 }

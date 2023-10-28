@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
+@Table(name = "live_room")
 @Getter
 @Entity
 public class LiveRoom {
