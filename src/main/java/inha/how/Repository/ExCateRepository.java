@@ -1,5 +1,6 @@
 package inha.how.Repository;
 
+import inha.how.Domain.dto.Excercise.CateInfoMapping;
 import inha.how.Domain.dto.Excercise.ExInfoMapping;
 import inha.how.Domain.entity.Category;
 import inha.how.Domain.entity.ExCate;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ExCateRepository extends JpaRepository<ExCate, ExCateId> {
-    List<ExInfoMapping> findExCateByExCateIdCategory(Category category);
+    //List<ExInfoMapping> findExCateByExCateIdCategory(Category category);
+    CateInfoMapping findExCateByExCateIdEx(Excersise excersise);
 
 }

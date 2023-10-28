@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ExRepository extends JpaRepository<Excersise, Long> {
-
+    Excersise findExcersiseById(Long id);
 
 }

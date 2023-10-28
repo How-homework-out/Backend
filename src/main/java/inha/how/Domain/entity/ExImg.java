@@ -1,5 +1,6 @@
 package inha.how.Domain.entity;
 
+import inha.how.Domain.entity.Identify.ExImgId;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -7,13 +8,7 @@ import lombok.Getter;
 @Getter
 @Entity
 public class ExImg {
+    @EmbeddedId
+    private ExImgId exImgId;
 
-    @Id
-    @JoinColumn(name="action_id", referencedColumnName = "id")
-    @ManyToOne
-    Excersise exId;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "img_id", referencedColumnName = "id")
-    Image imgId;
 }
