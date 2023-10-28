@@ -4,8 +4,13 @@ import inha.how.Domain.entity.RoutineDetails;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
 public class RoutineDetailRes {
-    RoutineDetails routineDetails;
+    private Long routId;
+    private String name;
+    private Integer hits;
+    List<RoutineDetailMapping> routineDetails;
 }
