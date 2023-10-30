@@ -19,7 +19,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic","/queue"); //subscription과 broadcasting, route message에 쓰인다.
+        registry.enableSimpleBroker("/room","/queue"); //subscription과 broadcasting, route message에 쓰인다.
         registry.setApplicationDestinationPrefixes("/app"); //message mapping에서 이것과 함께 쓰인다.
     }
 

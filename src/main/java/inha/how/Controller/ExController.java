@@ -15,11 +15,14 @@ public class ExController {
 
     private final ExService exService;
 
+    /*
     @GetMapping("")
     public BaseResponse<ExRes> ExDetails(@RequestParam Long tagId){
         ExRes exRes = exService.findEx(tagId);
         return new BaseResponse<>(exRes);
     }
+
+     */
 
 
 }
