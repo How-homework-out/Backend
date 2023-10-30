@@ -34,10 +34,9 @@ public class StopmController {
     @MessageMapping("/routine/{roomId}")
     //@SubscribeMapping("/routine/{roomId}")
     @SendTo
-    public void sendRoutine(@Payload Map<String,Object> data, @DestinationVariable Long roomId){
+    public void sendRoutine(@Payload Map<String,Long> data, @DestinationVariable Long roomId){
 
-        //log.error("send 실행!!!!!!!!!!!");
-        RoutineDetailRes res = routineService.findRoutineOne(roomId);
+        RoutineDetailRes res = routineService.findRoutineOne(data.get("routId"));
 
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, res);
     }

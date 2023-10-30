@@ -41,8 +41,7 @@
     //메시지 브로커로 메시지 전송
     function send(){
         data = {
-            'sender' : "111",
-            'contents': "test"
+            "routId": 1
         };
         // send(destination,헤더,페이로드)
         stompClient.send("/app/routine/"+input.value, {}, JSON.stringify(data));
