@@ -12,5 +12,5 @@ public class RoutineDetailRes {
     private Long routId;
     private String name;
     private Integer hits;
-    private List<RoutineDetailMapping> routineDetails;
+    private List<RoutinneDetailResult> routineDetails;
 }

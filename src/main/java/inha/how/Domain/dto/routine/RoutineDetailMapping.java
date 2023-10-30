@@ -1,11 +1,11 @@
 package inha.how.Domain.dto.routine;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import inha.how.Domain.entity.Excersise;
-import jakarta.persistence.Embedded;
 
 public interface RoutineDetailMapping {
     Long getId();
-    String getExName();
+    Excersise getEx();
     Long getType();
     Long getSet();
     Long getTime();
