@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface ExCateRepository extends JpaRepository<ExCate, ExCateId> {
     //List<ExInfoMapping> findExCateByExCateIdCategory(Category category);
-    CateInfoMapping findExCateByExCateIdEx(Excersise excersise);
+    List<CateInfoMapping> findExCateByExCateIdEx(Excersise excersise);
 
 }

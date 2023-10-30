@@ -1,7 +1,9 @@
 package inha.how.Domain.dto.Excercise;
 
-import inha.how.Domain.entity.Category;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public interface CateInfoMapping {
-    Category getExCateIdCategoryName();
+    @JsonProperty("name")
+    String getExCateIdCategoryName();
 }
