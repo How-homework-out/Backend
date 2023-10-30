@@ -10,7 +10,7 @@ public class RoutineDetails {
     private Long id;
     @ManyToOne
     @JoinColumn(name="act_id",referencedColumnName = "id")
-    private Action action;
+    private Excersise ex;
     @ManyToOne
     @JoinColumn(name="rout_id", referencedColumnName = "id")
     private Routine routine;
@@ -21,4 +21,8 @@ public class RoutineDetails {
     private Long rest;
     private Long set;
     private Long order;
+
+    public Excersise getRoutineName(){
+        return getEx();
+    }
 }

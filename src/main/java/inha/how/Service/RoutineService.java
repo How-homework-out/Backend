@@ -1,5 +1,6 @@
 package inha.how.Service;
 
+import inha.how.Domain.dto.routine.RoutineDetailMapping;
 import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.dto.routine.allRoutineRes;
 import inha.how.Domain.entity.Routine;
@@ -27,10 +28,12 @@ public class RoutineService {
     }
 
     public RoutineDetailRes findRoutineOne(Long id){
+        Routine routine = routineRepository.findRoutineById(id);
+        List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
 
-        RoutineDetails routineDetails = routineDetailRepository.findRoutineDetailsById(id);
-
-        return new RoutineDetailRes(routineDetails);
+        return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),routineDetails);
     }
+
+
 
 }

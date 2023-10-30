@@ -9,5 +9,5 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class allRoutineRes {
-    List<Routine> routines;
+    private List<Routine> routines;
 }
