@@ -28,7 +28,13 @@
                 //subscribe(subscribe url,해당 url로 메시지를 받을때마다 실행할 함수)
 
                 sub = stompClient.subscribe('/room/routine/'+input.value, function (e) {
-
+                    console.log(e);
+                });
+                stompClient.subscribe('/room/leave/'+input.value,function (e) {
+                    console.log(e);
+                });
+                stompClient.subscribe('/room/ready/'+input.value,function (e) {
+                    console.log(e);
                 });
             },
             function(e){
@@ -40,11 +46,19 @@
 
     //메시지 브로커로 메시지 전송
     function send(){
-        data = {
+        start = {
             "routId": 1
         };
+        leave = {
+            "nick": "운동만 하는 사람"
+        };
+        ready = {
+            "time": 5
+        };
         // send(destination,헤더,페이로드)
-        stompClient.send("/app/routine/"+input.value, {}, JSON.stringify(data));
+        stompClient.send("/app/start/"+input.value, {}, JSON.stringify(start));
+        stompClient.send("/app/leave/"+input.value, {}, JSON.stringify(leave));
+        stompClient.send("/app/ready/"+input.value, {}, JSON.stringify(ready));
 
         //console.log(input.value);
     }
