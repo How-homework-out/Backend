@@ -61,7 +61,7 @@ public class StopmController {
         //lock 풀기
         //참여자 수 Map에 추가
         //정보 보내기
-
+        simpMessagingTemplate.convertAndSend("/room/participate/"+roomId, data);
     }
 
     @MessageMapping("/leave/{roomId}")
