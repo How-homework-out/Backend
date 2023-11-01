@@ -53,7 +53,7 @@ public class StopmController {
 
     @MessageMapping("/participate/{roomId}")
     @SendTo
-    public void sendParticipate(@Payload Map<String,Long> data, @DestinationVariable Long roomId){
+    public void sendParticipate(@Payload Map<String,Object> data, @DestinationVariable Long roomId){
 
         //동시성 문제 생길 수 있으므로 lock 하기
         //roomId에 해당하는 객체 불러오기
