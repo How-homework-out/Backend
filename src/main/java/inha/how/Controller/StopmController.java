@@ -51,9 +51,10 @@ public class StopmController {
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, res);
     }
 
-    @MessageMapping("/participate/{roodId}")
+    @MessageMapping("/participate/{roomId}")
     @SendTo
-    public void sendParticipate(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
+    public void sendParticipate(@Payload Map<String,Long> data, @DestinationVariable Long roomId){
+
         //동시성 문제 생길 수 있으므로 lock 하기
         //roomId에 해당하는 객체 불러오기
         //참여자 수 증가
@@ -61,6 +62,7 @@ public class StopmController {
         //lock 풀기
         //참여자 수 Map에 추가
         //정보 보내기
+
         simpMessagingTemplate.convertAndSend("/room/participate/"+roomId, data);
     }
 
