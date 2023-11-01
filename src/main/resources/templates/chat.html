@@ -36,6 +36,9 @@
                 stompClient.subscribe('/room/ready/'+input.value,function (e) {
                     console.log(e);
                 });
+                stompClient.subscribe('/room/participate/'+input.value,function (e) {
+                    console.log(e);
+                });
             },
             function(e){
                 //에러 콜백
@@ -55,11 +58,14 @@
         ready = {
             "time": 5
         };
+        participate={
+            "parti": 100000
+        }
         // send(destination,헤더,페이로드)
         stompClient.send("/app/start/"+input.value, {}, JSON.stringify(start));
         stompClient.send("/app/leave/"+input.value, {}, JSON.stringify(leave));
         stompClient.send("/app/ready/"+input.value, {}, JSON.stringify(ready));
-
+        stompClient.send("/app/participate/"+input.value, {}, JSON.stringify(participate));
         //console.log(input.value);
     }
 
