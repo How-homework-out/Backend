@@ -20,7 +20,6 @@ public class LiveRoom {
     @JoinColumn(name = "rout_id", referencedColumnName = "id")
     private Routine routine;
     private String roomSubject;
-    private boolean type;
     @CreatedDate
     private LocalDateTime createDate;
 
