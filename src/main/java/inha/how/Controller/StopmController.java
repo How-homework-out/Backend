@@ -40,7 +40,7 @@ public class StopmController {
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, res);
     }
 
-    @MessageMapping("/routine/{roodId}")
+    @MessageMapping("/routine/{roomId}")
     @SendTo
     public void sendRoutine(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
         //운동 수정 필요
