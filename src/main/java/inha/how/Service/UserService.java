@@ -4,6 +4,8 @@ import inha.how.Config.exception.BaseException;
 import inha.how.Domain.dto.users.LoginRes;
 import inha.how.Domain.entity.User;
 import inha.how.Repository.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,7 @@ public class UserService {
         String jwts = Jwts.builder()
                 .subject("ryul")
                 .claim("userId", user.getUserId())
+                .claim("password", user.getPassword())
                 .claim("nick", user.getNick())
                 .claim("email", user.getPassword())
                 .signWith(key).compact();
@@ -42,5 +45,27 @@ public class UserService {
         return new LoginRes(jwts, user.getUserId(), user.getNick(), user.getEmail());
     }
 
+    public User validUser(String jwt){
+        Jws<Claims> jws = jwtParse(jwt);
 
+        String userId = jws.getPayload().get("userId").toString();
+        String password = jws.getPayload().get("password").toString();
+
+        User user = userRepository.findUserByUserIdAndPassword(userId, password);
+
+        if(user==null){
+            throw new BaseException(FAILED_TO_LOGIN);
+        }
+
+        return user;
+    }
+
+    public Jws<Claims> jwtParse(String jwt){
+        Jws<Claims> jws=Jwts.parser()
+                .requireSubject("ryul")
+                .verifyWith(key)
+                .build().parseClaimsJws(jwt);
+
+        return jws;
+    }
 }

@@ -9,15 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-
 import java.io.IOException;
-import java.net.BindException;
-import java.util.ArrayList;
-import java.util.List;
-
 import static inha.how.Config.BaseResponseStatus.*;
 import static inha.how.Service.UserService.key;
 
