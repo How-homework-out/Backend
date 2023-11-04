@@ -3,7 +3,10 @@ package inha.how.Controller;
 import inha.how.Config.BaseResponse;
 import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.dto.routine.RoutineMeDetailMapping;
+import inha.how.Domain.dto.routine.RoutineMeSaveReq;
 import inha.how.Domain.dto.routine.allRoutineRes;
+import inha.how.Domain.entity.MyRoutine;
+import inha.how.Domain.entity.Routine;
 import inha.how.Domain.entity.User;
 import inha.how.Service.RoutineService;
 import inha.how.Service.UserService;
@@ -29,7 +32,7 @@ public class RoutineController {
 
         //예외 처리 필요
 
-        allRoutineRes res = routineService.findRountine();
+        allRoutineRes res = routineService.findRountines();
 
         return new BaseResponse<>(res);
     }
@@ -47,13 +50,18 @@ public class RoutineController {
     @GetMapping("/me")
     public BaseResponse<List<RoutineMeDetailMapping>> RoutineMeDetails(@RequestHeader("Authorization") String jws, @RequestParam boolean type){//<allRoutineRes>
         //예외 처리 필요
-        Jws<Claims> jwt= userService.jwtParse(jws);
-
-        User user = userService.validUser(jwt.getPayload().get("userId").toString(), jwt.getPayload().get("password").toString());
+        User user = userService.validUser(jws);
 
         List<RoutineMeDetailMapping> res=routineService.findMyRoutine(user, type);
 
         return new BaseResponse<>(res);
     }
 
+    @PostMapping("/me")
+    public BaseResponse RoutineMeSave(@RequestHeader("Authorization") String jws, @RequestBody RoutineMeSaveReq req){
+        User user = userService.validUser(jws);
+        routineService.saveMyRoutine(user, req.getRoutId());
+
+        return new BaseResponse();
+    }
 }

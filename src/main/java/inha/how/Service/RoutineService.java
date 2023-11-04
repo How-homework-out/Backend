@@ -2,10 +2,7 @@ package inha.how.Service;
 
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
 import inha.how.Domain.dto.routine.*;
-import inha.how.Domain.entity.Excersise;
-import inha.how.Domain.entity.Routine;
-import inha.how.Domain.entity.RoutineDetails;
-import inha.how.Domain.entity.User;
+import inha.how.Domain.entity.*;
 import inha.how.Repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +22,7 @@ public class RoutineService {
     private final ExRepository exRepository;
     private final ExCateRepository exCateRepository;
 
-    public allRoutineRes findRountine(){
+    public allRoutineRes findRountines(){
         List<Routine> routineList= routineRepository.findAllByOrderByHitsDesc();
 
         return new allRoutineRes(routineList);
@@ -66,6 +63,17 @@ public class RoutineService {
         return meDetailMappingList;
     }
 
+    public void saveMyRoutine(User user, Long id){
+        //예외처리 필요
+
+        Routine routine= routineRepository.findRoutineById(id);
+        MyRoutine myRoutine = new MyRoutine();
+        myRoutine.setUser(user);
+        myRoutine.setRoutine(routine);
+        myRoutine.setCount(0);
+
+        myRoutineReposiotry.save(myRoutine);
+    }
 
 
 }

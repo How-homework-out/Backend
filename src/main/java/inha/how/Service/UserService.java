@@ -28,7 +28,11 @@ public class UserService {
     private final UserRepository userRepository;
     public LoginRes login(String userId, String password){
 
-        User user = validUser(userId, password);
+        User user = userRepository.findUserByUserIdAndPassword(userId, password);
+
+        if(user==null){
+            throw new BaseException(FAILED_TO_LOGIN);
+        }
 
         String jwts = Jwts.builder()
                 .subject("ryul")
@@ -41,7 +45,12 @@ public class UserService {
         return new LoginRes(jwts, user.getUserId(), user.getNick(), user.getEmail());
     }
 
-    public User validUser(String userId, String password){
+    public User validUser(String jwt){
+        Jws<Claims> jws = jwtParse(jwt);
+
+        String userId = jws.getPayload().get("userId").toString();
+        String password = jws.getPayload().get("password").toString();
+
         User user = userRepository.findUserByUserIdAndPassword(userId, password);
 
         if(user==null){
