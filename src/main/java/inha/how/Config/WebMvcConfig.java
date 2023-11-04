@@ -1,7 +1,9 @@
 package inha.how.Config;
 
+import inha.how.Controller.Interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -12,5 +14,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(new LoginInterceptor())
+                .excludePathPatterns("/swagger/swagger-ui/index.html")
+                .excludePathPatterns("/v3/api-docs")
+                .excludePathPatterns("/v3/api-docs/swagger-config")
+                .excludePathPatterns("/swagger/how")
+                .excludePathPatterns("/swagger/swagger-ui/swagger-ui-standalone-preset.js")
+                .excludePathPatterns("/swagger/swagger-ui/swagger-ui-bundle.js")
+                .excludePathPatterns("/swagger/swagger-ui/swagger-initializer.js")
+                .excludePathPatterns("/api/users/login")
+        ;
     }
 }
