@@ -1,17 +1,12 @@
 package inha.how.Service;
 
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
-import inha.how.Domain.dto.routine.RoutineDetailMapping;
-import inha.how.Domain.dto.routine.RoutineDetailRes;
-import inha.how.Domain.dto.routine.RoutinneDetailResult;
-import inha.how.Domain.dto.routine.allRoutineRes;
+import inha.how.Domain.dto.routine.*;
 import inha.how.Domain.entity.Excersise;
 import inha.how.Domain.entity.Routine;
 import inha.how.Domain.entity.RoutineDetails;
-import inha.how.Repository.ExCateRepository;
-import inha.how.Repository.ExRepository;
-import inha.how.Repository.RoutineDetailRepository;
-import inha.how.Repository.RoutineRepository;
+import inha.how.Domain.entity.User;
+import inha.how.Repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,6 +21,7 @@ public class RoutineService {
 
     private final RoutineRepository routineRepository;
     private final RoutineDetailRepository routineDetailRepository;
+    private final MyRoutineReposiotry myRoutineReposiotry;
     private final ExRepository exRepository;
     private final ExCateRepository exCateRepository;
 
@@ -39,6 +35,8 @@ public class RoutineService {
         Routine routine = routineRepository.findRoutineById(id);
         List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
         List<RoutinneDetailResult> routinneDetailResults = new ArrayList<>();
+        
+        //조회수 올라가는 거 필요
 
         routineDetails.forEach((detail)->{
             Long exId = detail.getEx().getId();
@@ -52,9 +50,20 @@ public class RoutineService {
             routinneDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
         });
 
-
-
         return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),routinneDetailResults);
+    }
+
+    //findMyRoutine
+    public List<RoutineMeDetailMapping> findMyRoutine(User user, boolean type){
+        //type 0일때, 최신순 1일 때, 운동횟수 별
+        List<RoutineMeDetailMapping> meDetailMappingList;
+        if(type){
+            meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCreateTimeDesc(user);
+        }
+        else{
+            meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCountDesc(user);
+        }
+        return meDetailMappingList;
     }
 
 

@@ -3,6 +3,8 @@ package inha.how.Domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Table(name = "my_routine")
 @Getter
 @Entity
@@ -17,5 +19,6 @@ public class MyRoutine {
     @JoinColumn(name = "rout_id", referencedColumnName = "id")
     private Routine routine;
     private Integer count;
+    private LocalDateTime createTime;
 
 }
