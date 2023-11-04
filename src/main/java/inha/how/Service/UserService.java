@@ -20,6 +20,9 @@ import static inha.how.Config.BaseResponseStatus.FAILED_TO_LOGIN;
 @Service
 public class UserService {
 
+    //JWT 토큰 발급
+    public static SecretKey key=Jwts.SIG.HS256.key().build();
+
     private final UserRepository userRepository;
     public LoginRes login(String userId, String password){
 
@@ -28,9 +31,6 @@ public class UserService {
         if(user==null){
             throw new BaseException(FAILED_TO_LOGIN);
         }
-
-        //JWT 토큰 발급
-        SecretKey key=Jwts.SIG.HS256.key().build();
 
         String jwts = Jwts.builder()
                 .subject("ryul")
@@ -41,8 +41,6 @@ public class UserService {
 
         return new LoginRes(jwts, user.getUserId(), user.getNick(), user.getEmail());
     }
-
-
 
 
 }
