@@ -21,7 +21,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/ex-routine")
+@RequestMapping("/api/ex-routines")
 @RestController
 public class RoutineController {
 
@@ -40,8 +40,8 @@ public class RoutineController {
     }
 
     @Operation(summary = "운동 루틴 상세 조회", description = "특정 운동 루틴의 상세를 조회하는 api다.")
-    @GetMapping("")
-    public BaseResponse<RoutineDetailRes> RoutineDetails(@RequestParam Long id){
+    @GetMapping("/{id}")
+    public BaseResponse<RoutineDetailRes> RoutineDetails(@PathVariable("id") Long id){
 
         //예외 처리 필요
 
