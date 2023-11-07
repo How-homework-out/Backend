@@ -31,6 +31,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/ex-routine/all")
                 .excludePathPatterns("/api/ex-routine")
                 .excludePathPatterns("/api/live")
+                .excludePathPatterns("/api/live/*")
         ;
     }
 }
