@@ -29,7 +29,7 @@ public class RoutineController {
     private final UserService userService;
 
     @Operation(summary = "운동 루틴 목록 조회", description = "운동 루틴 목록들을 조회하는 api다.")
-    @GetMapping("/all")
+    @GetMapping("")
     public BaseResponse<allRoutineRes> Routine(){
 
         //예외 처리 필요
