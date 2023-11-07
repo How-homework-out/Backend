@@ -2,14 +2,16 @@ package inha.how.Domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 @Table(name = "live_room")
 @Getter
+@Setter
 @Entity
-public class LiveRoom {
+public class LiveRoom extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +22,5 @@ public class LiveRoom {
     @JoinColumn(name = "rout_id", referencedColumnName = "id")
     private Routine routine;
     private String roomSubject;
-    @CreatedDate
-    private LocalDateTime createDate;
 
 }

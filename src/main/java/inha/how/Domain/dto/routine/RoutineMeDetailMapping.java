@@ -11,6 +11,6 @@ public interface RoutineMeDetailMapping {
     Long getRoutineId();
     String getRoutineSubject();
     Integer getCount();
-    LocalDateTime getCreateTime();
+    LocalDateTime getCreateDate();
 
 }
