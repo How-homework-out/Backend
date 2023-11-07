@@ -61,11 +61,20 @@ public class UserService {
     }
 
     public Jws<Claims> jwtParse(String jwt){
+        jwt = removeBear(jwt);
+
         Jws<Claims> jws=Jwts.parser()
                 .requireSubject("ryul")
                 .verifyWith(key)
                 .build().parseClaimsJws(jwt);
 
         return jws;
+    }
+
+    String removeBear(String jwt){
+        if(jwt.contains("Bearer")){
+            jwt=jwt.replace("Bearer ","");
+        }
+        return jwt;
     }
 }

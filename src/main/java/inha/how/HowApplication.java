@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @OpenAPIDefinition(
 		servers = {
-				@Server(url="http://52.78.0.53", description = "Default Server url")
+				@Server(url="/", description = "Default Server url")
 		}
 )
 
