@@ -12,14 +12,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginInterceptor())
                 .excludePathPatterns("/swagger/swagger-ui/index.html")
+                .excludePathPatterns("/swagger/**")
                 .excludePathPatterns("/v3/api-docs")
                 .excludePathPatterns("/v3/api-docs/swagger-config")
                 .excludePathPatterns("/swagger/how")
