@@ -22,8 +22,14 @@ public class RoutineService {
     private final ExRepository exRepository;
     private final ExCateRepository exCateRepository;
 
-    public allRoutineRes findRountines(){
-        List<Routine> routineList= routineRepository.findAllByOrderByHitsDesc();
+    public allRoutineRes findRountines(Boolean type){
+        List<Routine> routineList;
+        if(type){//최신순
+            routineList= routineRepository.findAllByOrderByHitsDesc();
+        }
+        else{//조회순
+            routineList= routineRepository.findAllByOrderByCreateDateDesc();
+        }
 
         return new allRoutineRes(routineList);
     }

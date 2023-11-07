@@ -28,13 +28,13 @@ public class RoutineController {
     private final RoutineService routineService;
     private final UserService userService;
 
-    @Operation(summary = "운동 루틴 목록 조회", description = "운동 루틴 목록들을 조회하는 api다.")
+    @Operation(summary = "운동 루틴 목록 조회", description = "운동 루틴 목록들을 조회하는 api다. type이 0일 때, 조회순, 1일 때, 최신순")
     @GetMapping("")
-    public BaseResponse<allRoutineRes> Routine(){
+    public BaseResponse<allRoutineRes> Routine(@RequestParam Boolean type){
 
         //예외 처리 필요
 
-        allRoutineRes res = routineService.findRountines();
+        allRoutineRes res = routineService.findRountines(type);
 
         return new BaseResponse<>(res);
     }
@@ -50,7 +50,7 @@ public class RoutineController {
         return new BaseResponse<>(res);
     }
 
-    @Operation(summary = "내 운동 루틴 목록 조회", description = "내 운동 루틴 목록들을 조회하는 api다.")
+    @Operation(summary = "내 운동 루틴 목록 조회", description = "내 운동 루틴 목록들을 조회하는 api다. type이 0일 때, 최신순, 1일 때, 운동 횟수순")
     @GetMapping("/me")
     public BaseResponse<List<RoutineMeDetailMapping>> RoutineMeDetails(@RequestHeader("Authorization") String jws, @RequestParam boolean type){//<allRoutineRes>
         //예외 처리 필요
