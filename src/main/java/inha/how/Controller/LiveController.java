@@ -33,5 +33,10 @@ public class LiveController {
     //LiveSearchList(search): 라이브 검색
     //api: /api/live/search POST
     //LiveLeave(roomId): 라이브 종료
-    //api: /api/live/leave?roomId=:id GET
+    //api: /api/live/{id} GET
+    @DeleteMapping("/{id}")
+    public BaseResponse LiveLeave(@PathVariable("id") Long roomId){
+        liveService.deleteLive(roomId);
+        return new BaseResponse();
+    }
 }
