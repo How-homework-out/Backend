@@ -13,7 +13,7 @@ public interface MyRoutineReposiotry extends JpaRepository<MyRoutine, Long> {
 
     //최신순, 운동횟수
 
-    List<RoutineMeDetailMapping> findMyRoutineByUserOrderByCreateTimeDesc(User user);
+    List<RoutineMeDetailMapping> findMyRoutineByUserOrderByCreateDateDesc(User user);
 
     List<RoutineMeDetailMapping> findMyRoutineByUserOrderByCountDesc(User user);
 

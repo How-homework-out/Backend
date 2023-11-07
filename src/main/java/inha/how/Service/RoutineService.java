@@ -29,7 +29,7 @@ public class RoutineService {
     }
 
     public RoutineDetailRes findRoutineOne(Long id){
-        Routine routine = routineRepository.findRoutineById(id);
+        Routine routine = findRoutineById(id);
         List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
         List<RoutinneDetailResult> routinneDetailResults = new ArrayList<>();
         
@@ -55,7 +55,7 @@ public class RoutineService {
         //type 0일때, 최신순 1일 때, 운동횟수 별
         List<RoutineMeDetailMapping> meDetailMappingList;
         if(type){
-            meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCreateTimeDesc(user);
+            meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCreateDateDesc(user);
         }
         else{
             meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCountDesc(user);
@@ -66,7 +66,7 @@ public class RoutineService {
     public void saveMyRoutine(User user, Long id){
         //예외처리 필요
 
-        Routine routine= routineRepository.findRoutineById(id);
+        Routine routine= findRoutineById(id);
         MyRoutine myRoutine = new MyRoutine();
         myRoutine.setUser(user);
         myRoutine.setRoutine(routine);
@@ -75,5 +75,10 @@ public class RoutineService {
         myRoutineReposiotry.save(myRoutine);
     }
 
+    public Routine findRoutineById(Long id){
+        Routine routine= routineRepository.findRoutineById(id);
+
+        return routine;
+    }
 
 }
