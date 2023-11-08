@@ -1,6 +1,7 @@
 package inha.how.Controller;
 
 import inha.how.Domain.dto.routine.RoutineDetailRes;
+import inha.how.Repository.Live.LiveRoutine;
 import inha.how.Service.RoutineService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Controller
@@ -20,6 +22,7 @@ import java.util.Map;
 public class StopmController {
 
     private final RoutineService routineService;
+    private final LiveRoutine liveRoutine;
 
     private final SimpMessagingTemplate simpMessagingTemplate;
     @MessageMapping("/send")
@@ -64,6 +67,17 @@ public class StopmController {
         //정보 보내기
 
         simpMessagingTemplate.convertAndSend("/room/participate/"+roomId, data);
+    }
+
+    @MessageMapping("/ex/{roomId}")
+    @SendTo
+    public void sendEx(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
+        //운동 보내기
+        Map<String, Object> ex = new ConcurrentHashMap<>();
+
+        ex.put("ex", liveRoutine.nextAction(roomId));
+
+        simpMessagingTemplate.convertAndSend("/room/ex/"+roomId, ex);
     }
 
     @MessageMapping("/leave/{roomId}")
