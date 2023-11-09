@@ -1,7 +1,11 @@
 package inha.how.Controller;
 
 import inha.how.Domain.dto.routine.RoutineDetailRes;
+import inha.how.Domain.entity.LiveRoom;
+import inha.how.Repository.Live.LiveRepository;
 import inha.how.Repository.Live.LiveRoutine;
+import inha.how.Repository.Live.ParticipateRepository;
+import inha.how.Service.LiveService;
 import inha.how.Service.RoutineService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +17,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,7 +28,8 @@ public class StopmController {
 
     private final RoutineService routineService;
     private final LiveRoutine liveRoutine;
-
+    private final LiveRepository liveRepository;
+    private final ParticipateRepository participateRepository;
     private final SimpMessagingTemplate simpMessagingTemplate;
     @MessageMapping("/send")
     @SendTo
@@ -65,14 +71,18 @@ public class StopmController {
         //lock 풀기
         //참여자 수 Map에 추가
         //정보 보내기
+        LiveRoom liveRoom= liveRepository.findLiveRoomById(roomId);
+        Integer participate= participateRepository.countByParticipateIdLiveRoom(liveRoom);
+        Map<String, Integer> res= new HashMap();
+        res.put("participate",participate);
 
-        simpMessagingTemplate.convertAndSend("/room/participate/"+roomId, data);
+        simpMessagingTemplate.convertAndSend("/room/participate/"+roomId, res);
     }
 
     @MessageMapping("/ex/{roomId}")
     @SendTo
     public void sendEx(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
-        //운동 보내기
+
         Map<String, Object> ex = new ConcurrentHashMap<>();
 
         ex.put("ex", liveRoutine.nextAction(roomId));
