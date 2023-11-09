@@ -1,17 +1,11 @@
 package inha.how.Service;
 
-import inha.how.Domain.dto.Excercise.CateInfoMapping;
-import inha.how.Domain.dto.Excercise.ExInfoMapping;
-import inha.how.Domain.dto.Excercise.ExRes;
-import inha.how.Domain.dto.Excercise.ImgUrlMapping;
-import inha.how.Domain.entity.Category;
-import inha.how.Domain.entity.ExCate;
-import inha.how.Domain.entity.Excersise;
 import inha.how.Repository.*;
+import inha.how.Repository.Ex.ExCateRepository;
+import inha.how.Repository.Ex.ExImgRepository;
+import inha.how.Repository.Ex.ExRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service

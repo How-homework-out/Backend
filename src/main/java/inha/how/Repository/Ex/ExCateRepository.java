@@ -1,4 +1,4 @@
-package inha.how.Repository;
+package inha.how.Repository.Ex;
 
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
 import inha.how.Domain.dto.Excercise.ExInfoMapping;

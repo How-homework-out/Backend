@@ -3,7 +3,11 @@ package inha.how.Service;
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
 import inha.how.Domain.dto.routine.*;
 import inha.how.Domain.entity.*;
-import inha.how.Repository.*;
+import inha.how.Repository.Ex.ExCateRepository;
+import inha.how.Repository.Ex.ExRepository;
+import inha.how.Repository.Routine.MyRoutineReposiotry;
+import inha.how.Repository.Routine.RoutineDetailRepository;
+import inha.how.Repository.Routine.RoutineRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,7 +41,7 @@ public class RoutineService {
     public RoutineDetailRes findRoutineOne(Long id){
         Routine routine = findRoutineById(id);
         List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
-        List<RoutinneDetailResult> routinneDetailResults = new ArrayList<>();
+        List<RoutinneDetailResult> routineDetailResults = new ArrayList<>();
         
         //조회수 올라가는 거 필요
 
@@ -50,10 +54,10 @@ public class RoutineService {
             //운동 부위
             List<CateInfoMapping> excersiseList = exCateRepository.findExCateByExCateIdEx(excersise);
 
-            routinneDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
+            routineDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
         });
 
-        return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),routinneDetailResults);
+        return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),routineDetailResults);
     }
 
     //findMyRoutine

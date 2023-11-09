@@ -9,6 +9,7 @@
     <button onclick="connect()">connect</button>
     <input value=""/>
     <button onclick="send()">send</button>
+    <button onclick="next()">ex</button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -39,6 +40,9 @@
                 stompClient.subscribe('/room/participate/'+input.value,function (e) {
                     console.log(e);
                 });
+                stompClient.subscribe('/room/ex/'+input.value,function (e) {
+                    console.log(e);
+                });
             },
             function(e){
                 //에러 콜백
@@ -67,6 +71,13 @@
         stompClient.send("/app/ready/"+input.value, {}, JSON.stringify(ready));
         stompClient.send("/app/participate/"+input.value, {}, JSON.stringify(participate));
         //console.log(input.value);
+    }
+
+    function next(){
+        nextAct={
+            "readyEnd": 1
+        }
+        stompClient.send("/app/ex/"+input.value, {}, JSON.stringify(nextAct));
     }
 
 </script>

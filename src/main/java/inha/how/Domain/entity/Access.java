@@ -1,5 +1,8 @@
 package inha.how.Domain.entity;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public enum Access {
-    Owner,Member;
+    owner,participate;
 }

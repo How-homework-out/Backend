@@ -1,4 +1,4 @@
-package inha.how.Repository;
+package inha.how.Repository.Routine;
 
 import inha.how.Domain.dto.routine.RoutineMeDetailMapping;
 import inha.how.Domain.entity.MyRoutine;

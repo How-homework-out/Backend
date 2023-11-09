@@ -1,4 +1,4 @@
-package inha.how.Repository;
+package inha.how.Repository.Ex;
 
 import inha.how.Domain.dto.Excercise.ImgUrlMapping;
 import inha.how.Domain.entity.ExImg;
