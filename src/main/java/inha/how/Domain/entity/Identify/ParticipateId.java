@@ -6,9 +6,11 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Setter;
 
 import java.io.Serializable;
 
+@Setter
 @Embeddable
 public class ParticipateId implements Serializable {
     @ManyToOne
