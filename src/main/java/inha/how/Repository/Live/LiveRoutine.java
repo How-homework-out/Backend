@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface LiveRoutine {
     void save(Long id, RoutineDetailRes routineDetailRes);
     //수정
-    void modifyRoutine();
+    RoutineDetailRes modifyRoutine(Long id, RoutineDetailRes routineDetailRes);
     void deleteRoutine();
     Object nextAction(Long id);
+    RoutineDetailRes showRoutine(Long id);
 }

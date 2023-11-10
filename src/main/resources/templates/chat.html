@@ -9,6 +9,8 @@
     <button onclick="connect()">connect</button>
     <input value=""/>
     <button onclick="send()">send</button>
+    <button onclick="Routine()">routine</button>
+    <button onclick="ModifyRoutine()">routine-modify</button>
     <button onclick="next()">ex</button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -28,7 +30,7 @@
         stompClient.connect({}, function () {
                 //subscribe(subscribe url,해당 url로 메시지를 받을때마다 실행할 함수)
 
-                sub = stompClient.subscribe('/room/routine/'+input.value, function (e) {
+                stompClient.subscribe('/room/routine/'+input.value, function (e) {
                     console.log(e);
                 });
                 stompClient.subscribe('/room/leave/'+input.value,function (e) {
@@ -43,6 +45,9 @@
                 stompClient.subscribe('/room/ex/'+input.value,function (e) {
                     console.log(e);
                 });
+                stompClient.subscribe('/room/nick/'+input.value,function (e) {
+                    console.log(e);
+                });
             },
             function(e){
                 //에러 콜백
@@ -53,9 +58,7 @@
 
     //메시지 브로커로 메시지 전송
     function send(){
-        start = {
-            "routId": 1
-        };
+
         leave = {
             "nick": "운동만 하는 사람"
         };
@@ -64,13 +67,76 @@
         };
         participate={
             "parti": 100000
-        }
+        };
+        nick={
+            "req": 1
+        };
+
         // send(destination,헤더,페이로드)
-        stompClient.send("/app/start/"+input.value, {}, JSON.stringify(start));
         stompClient.send("/app/leave/"+input.value, {}, JSON.stringify(leave));
         stompClient.send("/app/ready/"+input.value, {}, JSON.stringify(ready));
         stompClient.send("/app/participate/"+input.value, {}, JSON.stringify(participate));
+        stompClient.send("/app/nick/"+input.value, {}, JSON.stringify(nick));
         //console.log(input.value);
+    }
+
+    function Routine(){
+        start = {
+            "routId": 1
+        };
+        stompClient.send("/app/start/"+input.value, {}, JSON.stringify(start));
+    }
+
+    function ModifyRoutine(){
+        routine= {
+            "routId":
+                1,
+            "name":
+                "복부 운동 할 수 있어요!",
+            "hits":
+                0,
+            "routineDetails":
+                [
+                    {
+                        "id": 1,
+                        "ex":
+                            {
+                                "id": 13,
+                                "name": "넌 멍청이~~",
+                                "desc": "1. 엎드려 뻗친 자세를 취한다\n2. 양 발을 가슴까지 번갈아서 뻗었다 내렸다 한다."
+                            },
+                        "type": 1,
+                        "set": 2,
+                        "time": 50,
+                        "count": null,
+                        "rest": 10,
+                        "order": 1,
+                        "cate": [
+                            {"name": "유산소"},
+                            {"name": "복부"}
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "ex":
+                            {
+                                "id": 10,
+                                "name": "레그 레이즈",
+                                "desc": "1.벤치에 누워 벤치 윗부분을 두 손으로 잡는다.\n2.다리를 들어올린 후 무릎을 살짝 구부린다.골반을 가슴 쪽으로 말아 올린다.\n3.저항을 느끼며 다시 원위치한다.\n"
+                            },
+                        "type": 1,
+                        "set": 3,
+                        "time": 25,
+                        "count": null,
+                        "rest": 10,
+                        "order": 2,
+                        "cate": [
+                            {"name": "복부"}
+                        ]
+                    }
+                ]
+        };
+        stompClient.send("/app/routine/"+input.value, {}, JSON.stringify(routine));
     }
 
     function next(){

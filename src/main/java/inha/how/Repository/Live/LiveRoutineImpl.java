@@ -21,8 +21,10 @@ public class LiveRoutineImpl implements LiveRoutine{
     }
 
     @Override
-    public void modifyRoutine() {
+    public RoutineDetailRes modifyRoutine(Long id, RoutineDetailRes routineDetailRes) {
+        liveRoutine.put(id, routineDetailRes);
 
+        return liveRoutine.get(id);
     }
 
     @Override
@@ -36,5 +38,10 @@ public class LiveRoutineImpl implements LiveRoutine{
         nextAction.put(id, next+1);
 
         return liveRoutine.get(id).getRoutineDetails().get(next);
+    }
+
+    @Override
+    public RoutineDetailRes showRoutine(Long id){
+        return liveRoutine.get(id);
     }
 }
