@@ -42,7 +42,7 @@ public class LiveService {
         liveRoom.setRoomSubject(subject);
         liveRoom.setRoutine(routine);
         liveRepository.save(liveRoom);
-
+        // live방 운동 루틴 로컬 저장
         liveRoutine.save(liveRoom.getId(), routineService.findRoutineOne(routId));
     }
     //findLiveSearch(search):LiveRepository의 findBySubjectContainingOrNickContaining 함수를 이용해 제목이나 생성자 닉네임 중 search 단어가 포함된 라이브 방 정보를 조회하고 반환한다.
