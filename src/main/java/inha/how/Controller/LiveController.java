@@ -1,6 +1,7 @@
 package inha.how.Controller;
 
 import inha.how.Config.BaseResponse;
+import inha.how.Domain.dto.live.liveAddRes;
 import inha.how.Domain.dto.live.liveListRes;
 import inha.how.Domain.dto.live.liveReq;
 import inha.how.Domain.entity.User;
@@ -28,10 +29,10 @@ public class LiveController {
 
     @Operation(summary = "live 등록", description = "live 방을 등록하는 api다.")
     @PostMapping("")
-    public BaseResponse LiveAdd(@RequestHeader("Authorization") String jws, @RequestBody liveReq liveReq){
+    public BaseResponse<liveAddRes> LiveAdd(@RequestHeader("Authorization") String jws, @RequestBody liveReq liveReq){
         User user = userService.validUser(jws);
-        liveService.addLive(user, liveReq.getSubject(), liveReq.getRoutId());
-        return new BaseResponse();
+        liveAddRes res = liveService.addLive(user, liveReq.getSubject(), liveReq.getRoutId());
+        return new BaseResponse<>(res);
     }
     //LiveSearchList(search): 라이브 검색
     //api: /api/live/search POST
