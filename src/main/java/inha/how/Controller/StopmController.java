@@ -1,6 +1,7 @@
 package inha.how.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import inha.how.Domain.dto.live.ParticipateNicksMapping;
 import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.entity.LiveRoom;
 import inha.how.Repository.Live.LiveRepository;
@@ -21,6 +22,7 @@ import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +32,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 @RequiredArgsConstructor
 public class StopmController {
 
-    private final RoutineService routineService;
     private final LiveRoutine liveRoutine;
     private final LiveRepository liveRepository;
     private final ParticipateRepository participateRepository;
@@ -52,8 +53,6 @@ public class StopmController {
     @SendTo
     public void sendStart(@Payload Map<String,Long> data, @DestinationVariable Long roomId){
 
-        //수정 필요
-        //RoutineDetailRes res = routineService.findRoutineOne(data.get("routId"));
         RoutineDetailRes routineDetailRes = liveRoutine.showRoutine(roomId);
 
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, routineDetailRes);
@@ -61,13 +60,8 @@ public class StopmController {
 
     @MessageMapping("/routine/{roomId}")
     @SendTo
-    public void sendRoutine(@Payload Map<String, Object> data, @DestinationVariable Long roomId) throws JsonProcessingException{
-        //운동 수정 필요
-        //운동 루틴 저장 필요
-        //RoutineDetailRes res = routineService.findRoutineOne((Long) data.get("routId"));
-        //RoutineDetailRes detailRes=mapper.readValue(data, RoutineDetailRes.class);
+    public void sendRoutine(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
 
-        //RoutineDetailRes modifiedRoutine = liveRoutine.modifyRoutine(roomId, detailRes);
         RoutineDetailRes modifiedRoutine =stompService.modifyRoutine(roomId, data);
 
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, modifiedRoutine);
@@ -113,5 +107,15 @@ public class StopmController {
     public void sendReady(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
         simpMessagingTemplate.convertAndSend("/room/ready/"+roomId, data);
     }
+
+    @MessageMapping("/nick/{roomId}")
+    @SendTo
+    public void sendNick(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
+        List<ParticipateNicksMapping> res=stompService.findNicks(roomId);
+
+        simpMessagingTemplate.convertAndSend("/room/nick/"+roomId, res);
+    }
+
+
 
 }
