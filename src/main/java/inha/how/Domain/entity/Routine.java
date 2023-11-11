@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-public class Routine {
+public class Routine extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +16,5 @@ public class Routine {
     private String subject;
     @Column(nullable = false)
     private Integer hits;
-    @CreatedDate
-    private LocalDateTime createDate;
+
 }

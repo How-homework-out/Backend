@@ -13,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,7 +37,25 @@ public class RoutineService {
             routineList= routineRepository.findAllByOrderByCreateDateDesc();
         }
 
-        return new allRoutineRes(routineList);
+
+        List<RoutinesResult> routinesResults=new ArrayList<>();
+
+        routineList.forEach((routine)->{
+            Set<String> cate=new HashSet<>();
+            RoutineDetailRes routineDetailRes=findRoutineOne(routine.getId());
+            List<RoutinneDetailResult> routinneDetailResultList= routineDetailRes.getRoutineDetails();
+
+            routinneDetailResultList.forEach((action)->{
+                action.getCate().forEach((category)->{
+                    cate.add(category.getExCateIdCategoryName());
+                });
+            });
+            RoutinesResult routinesResult=new RoutinesResult(routine, cate);
+            routinesResults.add(routinesResult);
+        });
+
+
+        return new allRoutineRes(routinesResults);
     }
 
     public RoutineDetailRes findRoutineOne(Long id){
