@@ -12,4 +12,5 @@ import java.util.List;
 public interface ParticipateRepository extends JpaRepository<Participate, Long> {
     Integer countByParticipateIdLiveRoom(LiveRoom live);
     List<ParticipateNicksMapping> findParticipateByParticipateIdLiveRoom(LiveRoom live);
+    void deleteByParticipateIdLiveRoom(LiveRoom live);
 }

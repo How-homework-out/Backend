@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "live_room")
 @Getter
@@ -23,4 +25,6 @@ public class LiveRoom extends BaseTimeEntity{
     private Routine routine;
     private String roomSubject;
 
+    //@OneToMany(mappedBy = "liveRoom", cascade = CascadeType.ALL)
+    //private List<Participate> participateList=new ArrayList<>();
 }

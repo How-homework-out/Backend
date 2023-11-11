@@ -62,6 +62,7 @@ public class LiveService {
     //findLiveSearch(search):LiveRepository의 findBySubjectContainingOrNickContaining 함수를 이용해 제목이나 생성자 닉네임 중 search 단어가 포함된 라이브 방 정보를 조회하고 반환한다.
     //deleteLive(roomId):라이브 종료 후 운동 루틴 달력에 추가
     public void deleteLive(Long roomId){
+
         liveRepository.deleteById(roomId);
     }
 }

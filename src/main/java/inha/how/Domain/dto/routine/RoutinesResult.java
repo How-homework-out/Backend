@@ -4,12 +4,11 @@ import inha.how.Domain.entity.Routine;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
 @Getter
-public class allRoutineRes {
-    private List<RoutinesResult> routines;
-
+public class RoutinesResult {
+    private Routine routine;
+    private Set<String> cate;
 }
