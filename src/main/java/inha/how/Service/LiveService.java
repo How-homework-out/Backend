@@ -10,7 +10,9 @@ import inha.how.Repository.Live.LiveRoutine;
 import inha.how.Repository.Live.ParticipateRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +61,33 @@ public class LiveService {
 
         return new liveAddRes(liveRoom.getId());
     }
-    //findLiveSearch(search):LiveRepository의 findBySubjectContainingOrNickContaining 함수를 이용해 제목이나 생성자 닉네임 중 search 단어가 포함된 라이브 방 정보를 조회하고 반환한다.
-    //deleteLive(roomId):라이브 종료 후 운동 루틴 달력에 추가
-    public void deleteLive(Long roomId){
 
-        liveRepository.deleteById(roomId);
+    @Transactional
+    public void deleteLive(Long liveId){
+
+        liveRepository.deleteById(liveId);
+    }
+
+    public void addParticipate(User user, Long liveId){
+        LiveRoom liveRoom = liveRepository.findLiveRoomById(liveId);
+        Participate participate = new Participate();
+        ParticipateId participateId=new ParticipateId();
+
+        participateId.setLiveRoom(liveRoom);
+        participateId.setParticipate(user);
+
+        participate.setParticipateId(participateId);
+        participate.setAccess(Access.participate);
+
+        participateRepository.save(participate);
+    }
+
+    @Transactional
+    public void deleteParticipate(User user, Long liveId){
+        LiveRoom liveRoom = liveRepository.findLiveRoomById(liveId);
+        ParticipateId participateId=new ParticipateId();
+        participateId.setParticipate(user);
+        participateId.setLiveRoom(liveRoom);
+        participateRepository.deleteByParticipateId(participateId);
     }
 }
