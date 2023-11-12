@@ -44,19 +44,6 @@ public class RoutineService {
             List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
             Set<String> cate=findRoutineCate(routineDetails);
 
-/*
-            RoutineDetailRes routineDetailRes=findRoutineOne(routine.getId());
-            List<RoutinneDetailResult> routinneDetailResultList = routineDetailRes.getRoutineDetails();
-
-            routinneDetailResultList.forEach((action)->{
-                action.getCate().forEach((category)->{
-                    cate.add(category.getExCateIdCategoryName());
-                });
-            });
-
- */
-
-
             RoutinesResult routinesResult=new RoutinesResult(routine, cate);
             routinesResults.add(routinesResult);
         });
@@ -96,13 +83,11 @@ public class RoutineService {
         //조회수 올라가는 거 필요
 
         routineDetails.forEach((detail)->{
-            //Long exId = detail.getEx().getId();
-            //Excersise excersise = exRepository.findExcersiseById(exId);
+
 
             //이미지
 
             //운동 부위
-            //List<CateInfoMapping> excersiseList = exCateRepository.findExCateByExCateIdEx(excersise);
             List<CateInfoMapping> excersiseList=findExCate(detail);
 
             routineDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
@@ -113,7 +98,6 @@ public class RoutineService {
         return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),cate, routineDetailResults);
     }
 
-    //findMyRoutine
     public List<RoutineMeResult> findMyRoutine(User user, boolean type){
         //type 0일때, 최신순 1일 때, 운동횟수 별
         List<RoutineMeDetailMapping> meDetailMappingList;

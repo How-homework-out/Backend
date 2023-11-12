@@ -36,7 +36,7 @@ public class LiveController {
         return new BaseResponse<>(res);
     }
 
-    @Operation(summary = "live 종료(미완성)", description = "방장이 live를 삭제할 때 쓰는 api다.")
+    @Operation(summary = "live 종료", description = "방장이 live를 삭제할 때 쓰는 api다.")
     @DeleteMapping("/{id}")
     public BaseResponse LiveLeave(@PathVariable("id") Long roomId){
         liveService.deleteLive(roomId);

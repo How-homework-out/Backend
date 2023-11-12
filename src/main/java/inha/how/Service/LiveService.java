@@ -38,7 +38,6 @@ public class LiveService {
         return new liveListRes(liveLists);
     }
 
-    //addLive: LiveRepository의 save 함수를 이용해 라이브 방을 등록한다.
     public liveAddRes addLive(User user, String subject, Long routId){
         Routine routine= routineService.findRoutineById(routId);
         LiveRoom liveRoom=new LiveRoom();
@@ -64,7 +63,8 @@ public class LiveService {
 
     @Transactional
     public void deleteLive(Long liveId){
-
+        LiveRoom liveRoom= liveRepository.findLiveRoomById(liveId);
+        participateRepository.deleteByParticipateIdLiveRoom(liveRoom);
         liveRepository.deleteById(liveId);
     }
 

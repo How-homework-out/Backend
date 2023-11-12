@@ -25,6 +25,4 @@ public class LiveRoom extends BaseTimeEntity{
     private Routine routine;
     private String roomSubject;
 
-    //@OneToMany(mappedBy = "liveRoom", cascade = CascadeType.ALL)
-    //private List<Participate> participateList=new ArrayList<>();
 }
