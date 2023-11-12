@@ -9,19 +9,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-public class Calendar {
+public class Calendar extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User userId;
+    private User user;
     @ManyToOne
     @JoinColumn(name = "rout_id", referencedColumnName = "id")
-    private Routine routId;
+    private Routine routine;
     private LocalDate date;
     private boolean check;
-    @CreatedDate
-    private LocalDateTime create_date;
-
 }
