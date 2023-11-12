@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -26,7 +27,8 @@ public class StompService {
         String name=(String) data.get("name");
         Integer hits=(Integer) data.get("hits");
         List<RoutinneDetailResult> routinneDetailResultList = (List<RoutinneDetailResult>) data.get("routineDetails");
-        RoutineDetailRes detailRes=new RoutineDetailRes(routId, name, hits, routinneDetailResultList);
+        Set<String> cate=(Set<String>) data.get("cate");
+        RoutineDetailRes detailRes=new RoutineDetailRes(routId, name, hits, cate, routinneDetailResultList);
 
         RoutineDetailRes modifiedRoutine = liveRoutine.modifyRoutine(roomId, detailRes);
 

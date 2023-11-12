@@ -37,19 +37,26 @@ public class RoutineService {
             routineList= routineRepository.findAllByOrderByCreateDateDesc();
         }
 
-
         List<RoutinesResult> routinesResults=new ArrayList<>();
 
         routineList.forEach((routine)->{
-            Set<String> cate=new HashSet<>();
+
+            List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
+            Set<String> cate=findRoutineCate(routineDetails);
+
+/*
             RoutineDetailRes routineDetailRes=findRoutineOne(routine.getId());
-            List<RoutinneDetailResult> routinneDetailResultList= routineDetailRes.getRoutineDetails();
+            List<RoutinneDetailResult> routinneDetailResultList = routineDetailRes.getRoutineDetails();
 
             routinneDetailResultList.forEach((action)->{
                 action.getCate().forEach((category)->{
                     cate.add(category.getExCateIdCategoryName());
                 });
             });
+
+ */
+
+
             RoutinesResult routinesResult=new RoutinesResult(routine, cate);
             routinesResults.add(routinesResult);
         });
@@ -58,39 +65,76 @@ public class RoutineService {
         return new allRoutineRes(routinesResults);
     }
 
+    public Set<String> findRoutineCate(List<RoutineDetailMapping> routineDetailMappingList){
+        Set<String> cate=new HashSet<>();
+
+        routineDetailMappingList.forEach((detail)->{
+            List<CateInfoMapping> cateExInfo=findExCate(detail);
+
+            cateExInfo.forEach((category)->{
+                cate.add(category.getExCateIdCategoryName());
+            });
+        });
+
+        return cate;
+    }
+
+    public  List<CateInfoMapping> findExCate(RoutineDetailMapping routineDetail){
+        Long exId = routineDetail.getEx().getId();
+        Excersise excersise = exRepository.findExcersiseById(exId);
+        List<CateInfoMapping> excersiseList = exCateRepository.findExCateByExCateIdEx(excersise);
+
+        return excersiseList;
+    }
+
     public RoutineDetailRes findRoutineOne(Long id){
         Routine routine = findRoutineById(id);
         List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
         List<RoutinneDetailResult> routineDetailResults = new ArrayList<>();
+        Set<String> cate=findRoutineCate(routineDetails);
         
         //조회수 올라가는 거 필요
 
         routineDetails.forEach((detail)->{
-            Long exId = detail.getEx().getId();
-            Excersise excersise = exRepository.findExcersiseById(exId);
+            //Long exId = detail.getEx().getId();
+            //Excersise excersise = exRepository.findExcersiseById(exId);
 
             //이미지
 
             //운동 부위
-            List<CateInfoMapping> excersiseList = exCateRepository.findExCateByExCateIdEx(excersise);
+            //List<CateInfoMapping> excersiseList = exCateRepository.findExCateByExCateIdEx(excersise);
+            List<CateInfoMapping> excersiseList=findExCate(detail);
 
             routineDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
+
+
         });
 
-        return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),routineDetailResults);
+        return new RoutineDetailRes(routine.getId(), routine.getSubject(), routine.getHits(),cate, routineDetailResults);
     }
 
     //findMyRoutine
-    public List<RoutineMeDetailMapping> findMyRoutine(User user, boolean type){
+    public List<RoutineMeResult> findMyRoutine(User user, boolean type){
         //type 0일때, 최신순 1일 때, 운동횟수 별
         List<RoutineMeDetailMapping> meDetailMappingList;
+        List<RoutineMeResult> res=new ArrayList<>();
         if(type){
             meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCreateDateDesc(user);
         }
         else{
             meDetailMappingList = myRoutineReposiotry.findMyRoutineByUserOrderByCountDesc(user);
         }
-        return meDetailMappingList;
+
+        meDetailMappingList.forEach((meRoutine)->{
+            Routine routine = findRoutineById(meRoutine.getRoutineId());
+            List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
+
+            Set<String> cate = findRoutineCate(routineDetails);
+
+            res.add(new RoutineMeResult(meRoutine, cate));
+        });
+
+        return res;
     }
 
     public void saveMyRoutine(User user, Long id){
