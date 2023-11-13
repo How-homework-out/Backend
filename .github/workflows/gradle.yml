@@ -36,6 +36,10 @@ jobs:
         #arguments: build
       run : ./gradlew clean build --exclude-task test
 
+    # 권한 부여
+    - name: change to root
+      run: sudo su
+
     # 전송할 파일을 담을 디렉토리 생성
     - name: Make Directory for deliver
       run: mkdir /var/www/deploy
