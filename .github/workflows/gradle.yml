@@ -42,11 +42,11 @@ jobs:
 
     # Jar 파일 Copy
     - name: Copy Jar
-      run: cp ./build/libs/*.jar /var/www/deploy
+      run: sudo cp ./build/libs/*.jar /var/www/deploy
 
     # 파일 및 폴더를 압축하여 server.zip으로 저장
     - name: zip distributions
-      run: zip -r server.zip /var/www/deploy
+      run: sudo zip -r server.zip /var/www/deploy
     
     # AWS 인증 정보 설정
     - name: AWS configure credentials
