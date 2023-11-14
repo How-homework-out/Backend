@@ -58,7 +58,7 @@ public class LiveService {
         // live방 운동 루틴 로컬 저장
         liveRoutine.save(liveRoom.getId(), routineService.findRoutineOne(routId));
 
-        return new liveAddRes(liveRoom.getId());
+        return new liveAddRes(liveRoom.getId(), liveRoom.getRoomSubject());
     }
 
     @Transactional
@@ -68,7 +68,7 @@ public class LiveService {
         liveRepository.deleteById(liveId);
     }
 
-    public void addParticipate(User user, Long liveId){
+    public liveAddRes addParticipate(User user, Long liveId){
         LiveRoom liveRoom = liveRepository.findLiveRoomById(liveId);
         Participate participate = new Participate();
         ParticipateId participateId=new ParticipateId();
@@ -80,6 +80,8 @@ public class LiveService {
         participate.setAccess(Access.participate);
 
         participateRepository.save(participate);
+
+        return new liveAddRes(liveRoom.getId(), liveRoom.getRoomSubject());
     }
 
     @Transactional

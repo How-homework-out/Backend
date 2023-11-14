@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class liveAddRes {
     Long roomId;
+    String subject;
 }

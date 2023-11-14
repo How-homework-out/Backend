@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ParticipateRepository extends JpaRepository<Participate, Long> {
     Integer countByParticipateIdLiveRoom(LiveRoom live);
-    List<ParticipateNicksMapping> findParticipateByParticipateIdLiveRoom(LiveRoom live);
+    List<ParticipateNicksMapping> findParticipateByParticipateIdLiveRoomOrderByCreateDateAsc(LiveRoom live);
     void deleteByParticipateId(ParticipateId participateId);
     void deleteByParticipateIdLiveRoom(LiveRoom liveRoom);
 
