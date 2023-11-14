@@ -14,7 +14,7 @@ echo "$TIME_NOW > $JAR_FILE 파일 복사" >> $DEPLOY_LOG
 cp $PROJECT_ROOT/build/libs/*.jar $PROJECT_ROOT/
 
 # jar 찾기
-JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
+JAR_FILE=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
 echo "JAR Name: $JAR_NAME" >> $DEPLOY_LOG
 
 # jar 파일 실행
