@@ -37,7 +37,7 @@ public class StompService {
 
     public List<ParticipateNicksMapping> findNicks(Long roomId){
         LiveRoom liveRoom=liveRepository.findLiveRoomById(roomId);
-        List<ParticipateNicksMapping> nicks = participateRepository.findParticipateByParticipateIdLiveRoom(liveRoom);
+        List<ParticipateNicksMapping> nicks = participateRepository.findParticipateByParticipateIdLiveRoomOrderByCreateDateAsc(liveRoom);
 
         return nicks;
     }

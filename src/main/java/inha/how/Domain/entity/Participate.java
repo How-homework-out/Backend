@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Participate {
+public class Participate extends BaseTimeEntity{
     @EmbeddedId
     private ParticipateId participateId;
     @Enumerated(EnumType.STRING)
