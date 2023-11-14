@@ -3,7 +3,7 @@ os: linux              # 운영 체제 지정
 
 files:                 # 배포될 파일 및 디렉터리에 대한 정보
   - source: /          # 소스 디렉터리 지정 (루트 디렉터리)
-    destination: /home/ubuntu/server-univ  # 대상 디렉터리 지정
+    destination: /var/www/deploy  # 대상 디렉터리 지정
     overwrite: yes     # 이미 존재하는 파일 또는 디렉터리를 덮어쓸지 결정
 
 hooks:                 # 배포 생명주기 이벤트에 대한 스크립트 지정
