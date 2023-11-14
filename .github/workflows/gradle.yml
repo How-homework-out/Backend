@@ -50,7 +50,7 @@ jobs:
 
     # 파일 및 폴더를 압축하여 server.zip으로 저장
     - name: zip distributions
-      run: sudo zip -r server.zip ./deploy
+      run: sudo zip -r server.zip .
     
     # AWS 인증 정보 설정
     - name: AWS configure credentials
