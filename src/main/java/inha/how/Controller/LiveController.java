@@ -43,7 +43,7 @@ public class LiveController {
         return new BaseResponse();
     }
 
-    @Operation(summary = "live 참여하기(수정 필요)", description = "참여자가 live를 참여할 때 쓰는 api다.")
+    @Operation(summary = "live 참여하기(테스트)", description = "참여자가 live를 참여할 때 쓰는 api다.")
     @PostMapping("/participates")
     public BaseResponse LiveParticipate(@RequestHeader("Authorization") String jws, @RequestBody liveParticipateReq req){
         User user = userService.validUser(jws);
