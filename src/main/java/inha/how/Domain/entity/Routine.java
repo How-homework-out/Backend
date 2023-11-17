@@ -17,4 +17,7 @@ public class Routine extends BaseTimeEntity{
     @Column(nullable = false)
     private Integer hits;
 
+    public void addHits(){
+        hits++;
+    }
 }
