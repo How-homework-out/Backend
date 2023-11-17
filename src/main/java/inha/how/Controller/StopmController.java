@@ -2,6 +2,8 @@ package inha.how.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import inha.how.Domain.dto.live.ParticipateNicksMapping;
+import inha.how.Domain.dto.live.liveExRes;
+import inha.how.Domain.dto.live.liveRoutRes;
 import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.entity.LiveRoom;
 import inha.how.Repository.Live.LiveRepository;
@@ -53,16 +55,16 @@ public class StopmController {
     @SendTo
     public void sendStart(@Payload Map<String,Long> data, @DestinationVariable Long roomId){
 
-        RoutineDetailRes routineDetailRes = liveRoutine.showRoutine(roomId);
+        liveRoutRes liveRoutRes = liveRoutine.showRoutine(roomId);
 
-        simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, routineDetailRes);
+        simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, liveRoutRes);
     }
 
     @MessageMapping("/routine/{roomId}")
     @SendTo
     public void sendRoutine(@Payload Map<String, Object> data, @DestinationVariable Long roomId){
 
-        RoutineDetailRes modifiedRoutine =stompService.modifyRoutine(roomId, data);
+        liveRoutRes modifiedRoutine =stompService.modifyRoutine(roomId, data);
 
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, modifiedRoutine);
     }

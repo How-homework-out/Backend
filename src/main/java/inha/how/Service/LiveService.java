@@ -1,13 +1,14 @@
 package inha.how.Service;
 
-import inha.how.Domain.dto.live.liveAddRes;
-import inha.how.Domain.dto.live.liveList;
-import inha.how.Domain.dto.live.liveListRes;
+import inha.how.Domain.dto.live.*;
+import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.entity.*;
 import inha.how.Domain.entity.Identify.ParticipateId;
 import inha.how.Repository.Live.LiveRepository;
 import inha.how.Repository.Live.LiveRoutine;
 import inha.how.Repository.Live.ParticipateRepository;
+import inha.how.Repository.Routine.RoutineDetailRepository;
+import inha.how.Repository.Routine.RoutineRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.parameters.P;
@@ -24,6 +25,7 @@ public class LiveService {
 
     private final LiveRepository liveRepository;
     private final ParticipateRepository participateRepository;
+    private final RoutineDetailRepository routineDetailRepository;
     private final RoutineService routineService;
     private final LiveRoutine liveRoutine;
 
@@ -56,7 +58,9 @@ public class LiveService {
 
         participateRepository.save(participate);
         // live방 운동 루틴 로컬 저장
-        liveRoutine.save(liveRoom.getId(), routineService.findRoutineOne(routId));
+        RoutineDetailRes routineDetailRes=routineService.findRoutineOne(routId);
+        liveRoutRes liveRoutRes = new liveRoutRes(routineDetailRes.getRoutId(), routineDetailRes.getName(), routineDetailRes.getHits(), routineDetailRepository.countByRoutine(routine), routineDetailRes.getCate(), routineDetailRes.getRoutineDetails());
+        liveRoutine.save(liveRoom.getId(), liveRoutRes);
 
         return new liveAddRes(liveRoom.getId(), liveRoom.getRoomSubject());
     }
