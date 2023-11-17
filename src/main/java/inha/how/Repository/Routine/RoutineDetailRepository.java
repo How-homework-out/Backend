@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface RoutineDetailRepository extends JpaRepository<RoutineDetails, Long> {
     List<RoutineDetailMapping> findRoutineDetailsByRoutineOrderByOrderAsc(Routine routine);
+    Long countByRoutine(Routine routine);
 }

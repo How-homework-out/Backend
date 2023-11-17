@@ -1,6 +1,8 @@
 package inha.how.Service;
 
 import inha.how.Domain.dto.live.ParticipateNicksMapping;
+import inha.how.Domain.dto.live.liveExRes;
+import inha.how.Domain.dto.live.liveRoutRes;
 import inha.how.Domain.dto.routine.RoutineDetailRes;
 import inha.how.Domain.dto.routine.RoutinneDetailResult;
 import inha.how.Domain.entity.LiveRoom;
@@ -22,15 +24,16 @@ public class StompService {
     private final LiveRepository liveRepository;
     private final ParticipateRepository participateRepository;
 
-    public RoutineDetailRes modifyRoutine(Long roomId, Map<String, Object> data){
+    public liveRoutRes modifyRoutine(Long roomId, Map<String, Object> data){
         Long routId=((Number) data.get("routId")).longValue();
         String name=(String) data.get("name");
         Integer hits=(Integer) data.get("hits");
+        Long actionCnt=(Long) data.get("actionCnt");
         List<RoutinneDetailResult> routinneDetailResultList = (List<RoutinneDetailResult>) data.get("routineDetails");
         Set<String> cate=(Set<String>) data.get("cate");
-        RoutineDetailRes detailRes=new RoutineDetailRes(routId, name, hits, cate, routinneDetailResultList);
+        liveRoutRes liveRoutRes=new liveRoutRes(routId, name, hits,actionCnt, cate, routinneDetailResultList);
 
-        RoutineDetailRes modifiedRoutine = liveRoutine.modifyRoutine(roomId, detailRes);
+        liveRoutRes modifiedRoutine = liveRoutine.modifyRoutine(roomId, liveRoutRes);
 
         return modifiedRoutine;
     }

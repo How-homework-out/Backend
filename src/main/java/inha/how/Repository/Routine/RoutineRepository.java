@@ -3,6 +3,7 @@ package inha.how.Repository.Routine;
 import inha.how.Domain.entity.Routine;
 import inha.how.Domain.entity.RoutineDetails;
 import inha.how.Domain.entity.User;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
