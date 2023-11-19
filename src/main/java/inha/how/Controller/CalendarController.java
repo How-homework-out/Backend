@@ -7,10 +7,7 @@ import inha.how.Service.CalendarService;
 import inha.how.Service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +27,14 @@ public class CalendarController {
         List<CalendarInfoMapping> res=calendarService.findCalendar(user);
         return new BaseResponse<>(res);
     }
+/*
+    @Operation(summary = "내 달력 루틴 추가", description = "자신의 달력에 할 루틴을 등록하는 api다.")
+    @PostMapping("")
+    public BaseResponse CalendarAdd(){
+        
+    }
+
+
+ */
+    //CalendarModify: 운동 체크
 }

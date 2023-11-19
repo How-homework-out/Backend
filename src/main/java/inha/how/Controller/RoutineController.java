@@ -43,6 +43,8 @@ public class RoutineController {
         //예외 처리 필요
 
         RoutineDetailRes res = routineService.findRoutineOne(id);
+        //조회수 증가
+        routineService.increaseHits(id);
 
         return new BaseResponse<>(res);
     }

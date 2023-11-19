@@ -19,4 +19,10 @@ public class CalendarService {
         return calendarInfoMappingList;
     }
 
+    public void CalendarAdd(){
+
+    }
+
+    //modifyCalendar: 달력 체크 수정
+
 }

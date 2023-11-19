@@ -11,6 +11,7 @@ import inha.how.Repository.Routine.RoutineRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -79,8 +80,6 @@ public class RoutineService {
         List<RoutineDetailMapping> routineDetails = routineDetailRepository.findRoutineDetailsByRoutineOrderByOrderAsc(routine);
         List<RoutinneDetailResult> routineDetailResults = new ArrayList<>();
         Set<String> cate=findRoutineCate(routineDetails);
-        
-        //조회수 올라가는 거 필요
 
         routineDetails.forEach((detail)->{
 
@@ -137,6 +136,12 @@ public class RoutineService {
         Routine routine= routineRepository.findRoutineById(id);
 
         return routine;
+    }
+
+    @Transactional
+    public void increaseHits(Long id){
+        Routine routine = findRoutineById(id);
+        routine.addHits();
     }
 
 }
