@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
     const input = document.querySelector("input");
+    var routine_modify;
 
     function connect() {
         //StompConfig.java에 설정된 endpoint로 SockJS 객체, StompClient 객체 생성
@@ -32,6 +33,7 @@
 
                 stompClient.subscribe('/room/routine/'+input.value, function (e) {
                     console.log(e);
+                    routine_modify=JSON.parse(e.body);
                 });
                 stompClient.subscribe('/room/leave/'+input.value,function (e) {
                     console.log(e);
@@ -90,52 +92,21 @@
     function ModifyRoutine(){
         routine= {
             "routId":
-                1,
+                routine_modify.routId,
             "name":
-                "복부 운동 할 수 있어요!",
+                "냥냥냥냥냥",
             "hits":
-                0,
+                routine_modify.hits,
+            "actionCnt":
+                routine_modify.actionCnt,
+            "cate":
+                routine_modify["cate"],
             "routineDetails":
-                [
-                    {
-                        "id": 1,
-                        "ex":
-                            {
-                                "id": 13,
-                                "name": "넌 멍청이~~",
-                                "desc": "1. 엎드려 뻗친 자세를 취한다\n2. 양 발을 가슴까지 번갈아서 뻗었다 내렸다 한다."
-                            },
-                        "type": 1,
-                        "set": 2,
-                        "time": 50,
-                        "count": null,
-                        "rest": 10,
-                        "order": 1,
-                        "cate": [
-                            {"name": "유산소"},
-                            {"name": "복부"}
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "ex":
-                            {
-                                "id": 10,
-                                "name": "레그 레이즈",
-                                "desc": "1.벤치에 누워 벤치 윗부분을 두 손으로 잡는다.\n2.다리를 들어올린 후 무릎을 살짝 구부린다.골반을 가슴 쪽으로 말아 올린다.\n3.저항을 느끼며 다시 원위치한다.\n"
-                            },
-                        "type": 1,
-                        "set": 3,
-                        "time": 25,
-                        "count": null,
-                        "rest": 10,
-                        "order": 2,
-                        "cate": [
-                            {"name": "복부"}
-                        ]
-                    }
-                ]
+                routine_modify["routineDetails"]
         };
+        //routine["name"]="냥냥냥냥냥";
+        console.log(routine_modify);
+        console.log(routine_modify["routId"]);
         stompClient.send("/app/routine/"+input.value, {}, JSON.stringify(routine));
     }
 
