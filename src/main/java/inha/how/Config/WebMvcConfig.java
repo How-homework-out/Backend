@@ -33,7 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/hello")
                 .excludePathPatterns("/api/lives")
                 .excludePathPatterns("/api/lives/*")
-                .excludePathPatterns("/.well-known/*")
+                .excludePathPatterns("/.well-known/**")
         ;
     }
 }
