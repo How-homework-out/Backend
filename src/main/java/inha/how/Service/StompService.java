@@ -12,11 +12,9 @@ import inha.how.Repository.Live.ParticipateRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Sets;
 
 import java.util.*;
 
-import static org.hibernate.validator.internal.util.CollectionHelper.newHashSet;
 
 @Slf4j
 @RequiredArgsConstructor

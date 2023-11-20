@@ -83,8 +83,8 @@ public class RoutineService {
 
         routineDetails.forEach((detail)->{
 
-
             //이미지
+
 
             //운동 부위
             List<CateInfoMapping> excersiseList=findExCate(detail);
