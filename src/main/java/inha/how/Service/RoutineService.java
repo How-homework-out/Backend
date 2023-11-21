@@ -1,10 +1,13 @@
 package inha.how.Service;
 
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
+import inha.how.Domain.dto.Excercise.ImgUrlMapping;
 import inha.how.Domain.dto.routine.*;
 import inha.how.Domain.entity.*;
 import inha.how.Repository.Ex.ExCateRepository;
+import inha.how.Repository.Ex.ExImgRepository;
 import inha.how.Repository.Ex.ExRepository;
+import inha.how.Repository.ImgRepository;
 import inha.how.Repository.Routine.MyRoutineReposiotry;
 import inha.how.Repository.Routine.RoutineDetailRepository;
 import inha.how.Repository.Routine.RoutineRepository;
@@ -28,6 +31,9 @@ public class RoutineService {
     private final MyRoutineReposiotry myRoutineReposiotry;
     private final ExRepository exRepository;
     private final ExCateRepository exCateRepository;
+    private final ExImgRepository exImgRepository;
+    private final ImgRepository imgRepository;
+
 
     public allRoutineRes findRountines(Boolean type){
         List<Routine> routineList;
@@ -84,12 +90,12 @@ public class RoutineService {
         routineDetails.forEach((detail)->{
 
             //이미지
-
+            List<ImgUrlMapping> exImgList = exImgRepository.findExImgByExImgIdEx(detail.getEx());
 
             //운동 부위
             List<CateInfoMapping> excersiseList=findExCate(detail);
 
-            routineDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), excersiseList));
+            routineDetailResults.add(new RoutinneDetailResult(detail.getId(), detail.getEx(), detail.getType(), detail.getSet(), detail.getTime(), detail.getCount(), detail.getRest(), detail.getOrder(), exImgList, excersiseList));
 
 
         });
