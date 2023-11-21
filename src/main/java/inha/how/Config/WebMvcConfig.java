@@ -35,6 +35,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/lives/*")
         ;
     }
-
-
 }
