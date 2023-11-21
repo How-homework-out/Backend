@@ -57,6 +57,8 @@ public class StopmController {
 
         liveRoutRes liveRoutRes = liveRoutine.showRoutine(roomId);
 
+        log.error("routines: "+liveRoutRes.getRoutineDetails());
+
         simpMessagingTemplate.convertAndSend("/room/routine/"+roomId, liveRoutRes);
     }
 
