@@ -1,6 +1,7 @@
 package inha.how.Domain.dto.routine;
 
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
+import inha.how.Domain.dto.Excercise.ImgUrlMapping;
 import inha.how.Domain.entity.Excersise;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class RoutinneDetailResult {
     private Long count;
     private Long rest;
     private Long order;
-    //private List<String> img;
+    private List<ImgUrlMapping> img;
     private List<CateInfoMapping> cate;
 
 }
