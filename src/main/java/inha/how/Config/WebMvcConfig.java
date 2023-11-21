@@ -15,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
     }
-/*
+
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginInterceptor())
@@ -33,9 +33,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/hello")
                 .excludePathPatterns("/api/lives")
                 .excludePathPatterns("/api/lives/*")
-                .excludePathPatterns("/.well-known/*")
         ;
     }
-    */
+
 
 }
