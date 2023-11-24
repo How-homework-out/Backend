@@ -3,6 +3,7 @@ package inha.how.Controller;
 import inha.how.Config.BaseResponse;
 import inha.how.Domain.dto.calendar.CalendarAddRes;
 import inha.how.Domain.dto.calendar.CalendarInfoMapping;
+import inha.how.Domain.dto.calendar.CalendarModifyReq;
 import inha.how.Domain.entity.User;
 import inha.how.Service.CalendarService;
 import inha.how.Service.UserService;
@@ -39,7 +40,12 @@ public class CalendarController {
         return new BaseResponse();
     }
 
+    @Operation(summary = "달력 운동루틴 체크/해제", description = "내 달력의 할 운동 루틴에 체크/해제한다.")
+    @PatchMapping("/{id}")
+    public BaseResponse CalendarModify(@PathVariable("id") Long id, @RequestBody CalendarModifyReq calendarModifyReq){
+        calendarService.modifyCalendar(id, calendarModifyReq);
 
-
+        return new BaseResponse();
+    }
     //CalendarModify: 운동 체크
 }
