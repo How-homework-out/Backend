@@ -30,6 +30,8 @@ public enum BaseResponseStatus {
 
     CALENDAR_NOT_FOUND(false, 2012, "해당하는 달력을 찾을 수 없습니다."),
 
+    MY_ROUTINE_NOT_FOUND(false, 2012, "해당하는 내 루틴을 찾을 수 없습니다."),
+
     // [POST] /users
     POST_USERS_EMPTY_EMAIL(false, 2015, "이메일을 입력해주세요."),
     POST_USERS_INVALID_EMAIL(false, 2016, "이메일 형식을 확인해주세요."),

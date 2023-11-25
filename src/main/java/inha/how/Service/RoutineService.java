@@ -1,5 +1,6 @@
 package inha.how.Service;
 
+import inha.how.Config.exception.BaseException;
 import inha.how.Domain.dto.Excercise.CateInfoMapping;
 import inha.how.Domain.dto.Excercise.ImgUrlMapping;
 import inha.how.Domain.dto.routine.*;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static inha.how.Config.BaseResponseStatus.MY_ROUTINE_NOT_FOUND;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -150,4 +153,9 @@ public class RoutineService {
         routine.addHits();
     }
 
+    @Transactional
+    public void CompleteRoutine(Long id){
+        MyRoutine myRoutine= myRoutineReposiotry.findById(id).orElseThrow(()-> new BaseException(MY_ROUTINE_NOT_FOUND));
+        myRoutine.increaseCnt();
+    }
 }
