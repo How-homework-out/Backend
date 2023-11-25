@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
+import static inha.how.Config.BaseResponseStatus.CALENDAR_NOT_FOUND;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -50,7 +52,7 @@ public class CalendarService {
     @Transactional
     //modifyCalendar: 달력 체크 수정
     public void modifyCalendar(Long id, CalendarModifyReq calendarModifyReq){
-        Calendar calendar= calendarRepository.findById(id).orElseThrow(()->new BaseException(BaseResponseStatus.CALENDAR_NOT_FOUND));
+        Calendar calendar= calendarRepository.findById(id).orElseThrow(()->new BaseException(CALENDAR_NOT_FOUND));
 
         log.error("check: "+calendarModifyReq.isChk());
         calendar.setCheck(calendarModifyReq.isChk());
