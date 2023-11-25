@@ -25,4 +25,7 @@ public class MyRoutine extends BaseTimeEntity{
     private Routine routine;
     private Integer count;
 
+    public void increaseCnt(){
+        this.count++;
+    }
 }

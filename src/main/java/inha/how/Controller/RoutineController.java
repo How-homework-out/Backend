@@ -10,6 +10,7 @@ import inha.how.Service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +66,16 @@ public class RoutineController {
     public BaseResponse RoutineMeSave(@RequestHeader("Authorization") String jws, @RequestBody RoutineMeSaveReq req){
         User user = userService.validUser(jws);
         routineService.saveMyRoutine(user, req.getRoutId());
+
+        return new BaseResponse();
+    }
+
+    @Operation(summary = "내 운동 루틴 실행 완료", description = "운동 루틴을 실행을 완료할 때 사용하는 api다. 운동 횟수가 올라간다.")
+    @Parameter(name = "id", description = "나의 운동 루틴 id")
+    @GetMapping("/{id}/me")
+    public BaseResponse RoutineMeComplete(@RequestHeader("Authorization") String jws, @PathVariable(name = "id") Long id){
+        User user = userService.validUser(jws);
+        routineService.CompleteRoutine(id);
 
         return new BaseResponse();
     }

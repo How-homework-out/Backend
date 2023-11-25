@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 public interface RoutineMeDetailMapping {
 
+    Long getId();
     Long getRoutineId();
     String getRoutineSubject();
     Integer getCount();
