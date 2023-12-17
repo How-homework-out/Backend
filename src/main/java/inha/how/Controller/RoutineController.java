@@ -30,8 +30,6 @@ public class RoutineController {
     @GetMapping("")
     public BaseResponse<allRoutineRes> Routine(@RequestParam Boolean type){
 
-        //예외 처리 필요
-
         allRoutineRes res = routineService.findRountines(type);
 
         return new BaseResponse<>(res);
@@ -40,8 +38,6 @@ public class RoutineController {
     @Operation(summary = "운동 루틴 상세 조회", description = "특정 운동 루틴의 상세를 조회하는 api다.")
     @GetMapping("/{id}")
     public BaseResponse<RoutineDetailRes> RoutineDetails(@PathVariable("id") Long id){
-
-        //예외 처리 필요
 
         RoutineDetailRes res = routineService.findRoutineOne(id);
         //조회수 증가
@@ -53,7 +49,7 @@ public class RoutineController {
     @Operation(summary = "내 운동 루틴 목록 조회", description = "내 운동 루틴 목록들을 조회하는 api다. type이 0일 때, 최신순, 1일 때, 운동 횟수순")
     @GetMapping("/me")
     public BaseResponse<List<RoutineMeResult>> RoutineMeDetails(@RequestHeader("Authorization") String jws, @RequestParam boolean type){//<allRoutineRes>
-        //예외 처리 필요
+
         User user = userService.validUser(jws);
 
         List<RoutineMeResult> res=routineService.findMyRoutine(user, type);

@@ -50,7 +50,6 @@ public class CalendarService {
     }
 
     @Transactional
-    //modifyCalendar: 달력 체크 수정
     public void modifyCalendar(Long id, CalendarModifyReq calendarModifyReq){
         Calendar calendar= calendarRepository.findById(id).orElseThrow(()->new BaseException(CALENDAR_NOT_FOUND));
 
