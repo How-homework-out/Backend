@@ -9,7 +9,6 @@ import inha.how.Service.CalendarService;
 import inha.how.Service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,5 +46,4 @@ public class CalendarController {
 
         return new BaseResponse();
     }
-    //CalendarModify: 운동 체크
 }

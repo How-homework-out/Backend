@@ -130,7 +130,6 @@ public class RoutineService {
     }
 
     public void saveMyRoutine(User user, Long id){
-        //예외처리 필요
 
         Routine routine= findRoutineById(id);
         MyRoutine myRoutine = new MyRoutine();

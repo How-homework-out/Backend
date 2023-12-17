@@ -34,10 +34,6 @@ public class LiveRoutineImpl implements LiveRoutine{
         return liveRoutine.get(id);
     }
 
-    @Override
-    public void deleteRoutine() {
-
-    }
 
     @Override
     public Object nextAction(Long id) {

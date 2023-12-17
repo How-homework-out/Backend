@@ -36,7 +36,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(jwt==null) throw new BaseException(EMPTY_JWT);
 
         String s=removeBear(jwt);
-        log.error("jwt:"+s);
 
         Jws<Claims> jws;
 

@@ -18,6 +18,4 @@ public interface RoutineRepository extends JpaRepository<Routine, Long> {
 
     Routine findRoutineById(Long id);
 
-    //List<Routine> findRoutineByUserOrderByCreateDateCreateDateDesc(User user);
-    //List<Routine> findRoutineByUserOrderByCreateDateCreateDateDesc(User user);
 }

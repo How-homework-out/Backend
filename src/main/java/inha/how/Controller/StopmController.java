@@ -75,13 +75,6 @@ public class StopmController {
     @SendTo
     public void sendParticipate(@Payload Map<String,Object> data, @DestinationVariable Long roomId){
 
-        //동시성 문제 생길 수 있으므로 lock 하기
-        //roomId에 해당하는 객체 불러오기
-        //참여자 수 증가
-        //DB에 save
-        //lock 풀기
-        //참여자 수 Map에 추가
-        //정보 보내기
         LiveRoom liveRoom= liveRepository.findLiveRoomById(roomId);
         Integer participate= participateRepository.countByParticipateIdLiveRoom(liveRoom);
         data.put("participate",participate);
